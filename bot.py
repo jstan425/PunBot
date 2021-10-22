@@ -14,7 +14,7 @@ if os.name != 'nt':
     
 load_dotenv()
 intents = disnake.Intents.all()
-client = commands.Client(
+client = commands.bot(
     command_prefix='pb-',
     intents=intents,
     test_guilds=[],
