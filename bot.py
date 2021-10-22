@@ -1,9 +1,9 @@
 import logging
 import os
 import platform
-from logging.handlers import TimeRotatingFileHandler, TimedRotatingFileHandler
-
 import disnake
+
+from logging.handlers import TimedRotatingFileHandler
 from disnake.ext import commands
 from dotenv import load_dotenv
 
@@ -14,7 +14,7 @@ if os.name != 'nt':
     
 load_dotenv()
 intents = disnake.Intents.all()
-client = commands.bot(
+client = commands.Bot(
     command_prefix='pb-',
     intents=intents,
     test_guilds=[],
@@ -22,7 +22,7 @@ client = commands.bot(
 )
 
 @client.event
-async def on_ready(self):
+async def on_ready():
     print(f"We have logged in as {client.user.name}")
     print(f"Disnake API version: {disnake.__version__}")
     print(f"Python version: {platform.python_version()}")
