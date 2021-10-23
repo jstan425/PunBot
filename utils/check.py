@@ -45,8 +45,3 @@ def is_admin():
 
 def is_mod():
     return commands.check(check_is_mod)
-
-
-
-
-
