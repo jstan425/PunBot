@@ -16,6 +16,16 @@ class Core(commands.Cog):
             color=disnake.Color.blue(),
             )
         await inter.response.send_message(embed=embed)
+    
+    @commands.slash_command(description="Reload Cogs")
+    async def reload(self,
+                     inter: disnake.ApplicationCommandInteraction):
+        embed = disnake.Embed(
+            title="Reloaded!",
+            description="Cogs is now reloaded",
+            color=disnake.color.green(),
+            )
+        await inter.response.send_message(embed=embed)
         
 def setup(bot:commands.Bot):
     bot.add_cog(Core(bot))
