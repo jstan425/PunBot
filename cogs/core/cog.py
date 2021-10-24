@@ -73,7 +73,7 @@ class Core(commands.Cog):
         )
         embed= disnake.Embed(
             title="Thank You!",
-            description="Message raised successfully via " + g.html_url,
+            description="Issue raised successfully via " + g.html_url,
             color=disnake.Color.green()
             )
         
