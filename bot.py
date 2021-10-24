@@ -18,7 +18,7 @@ bot = commands.Bot(
     command_prefix="pb-",
     intents=intents,
     test_guilds=[872470314171392001],
-    sync_commands_debug=True,
+    sync_commands_debug=True
 )
 
 
