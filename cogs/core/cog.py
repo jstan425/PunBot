@@ -9,6 +9,8 @@ from disnake.ext.commands import Param
 from utils import check
 from github import Github
 from dotenv import load_dotenv
+from rich.traceback import install
+install(show_locals=True)
 
 logger = logging.getLogger("punbot")
 
@@ -21,7 +23,12 @@ class Core(commands.Cog):
         
     class IssueType(str, Enum):
         Bug = "bug"
+        Documentation = "documentation"
         Enchancement = "enhancement"
+        NeedHelp = "help wanted"
+        Question = "question"
+        CantFix = "wontfix"
+
             
     @commands.slash_command(description="Prints latency of the bot between server and the host.")
     async def latency(self,
@@ -36,16 +43,22 @@ class Core(commands.Cog):
     @commands.slash_command(description="Reload Cogs")
     async def reload(self,
                      inter: disnake.ApplicationCommandInteraction):
+        for folder in os.listdir("cogs"):
+            if os.path.exists(os.path.join("cogs", folder, "cogs.py")):
+                self.bot.unload_extension(f"cogs.{folder}.cog")
+                self.bot.load_extension(f"cogs.{folder}.cog")
         embed = disnake.Embed(
             title="Reloaded!",
             description="Cogs is now reloaded",
-            color=disnake.Color.green(),
+            color=0x3fff0a,
             )
         await inter.response.send_message(embed=embed)
+        print("Cogs is now reloaded.")
+        logger.info("Cogs Reloaded")
     
-    @commands.slash_command(description="Create issues in Repo")
-    @check.is_mod()
-    async def gitcreate(self,
+    @commands.slash_command(description="Create issues in Repo", category = "Administrator")
+    @check.is_admin()
+    async def ghcreate(self,
                         inter: disnake.ApplicationCommandInteraction,
                         repo: Repo = Param(desc="Select a repo"),
                         issuetype: IssueType = Param(desc="Bugs or Enhancements"),
@@ -69,21 +82,23 @@ class Core(commands.Cog):
         g = repo.create_issue(
             title=title,
             labels=[label],
-            body=description + "\n\nraised by: " + inter.author.name,
+            body=description + "\n\nIssue raised by: " + inter.author.name,
         )
         embed= disnake.Embed(
             title="Thank You!",
-            description="Issue raised successfully via " + g.html_url,
-            color=disnake.Color.green()
+            description="The issue had been raised successfully. You can view it at " + g.html_url,
+            color=0x3fff0a
             )
         
         await inter.response.send_message(embed=embed)
-    
+        
 def setup(bot:commands.Bot):
     bot.add_cog(Core(bot))
-    print("Core cogs is now loaded.\n")
+    print("Core cog is now loaded.\n")
+    logger.info("Core cog loaded")
 
 def teardown(bot:commands.Bot):
     bot.remove_cog(Core(bot))
     print("Core cogs is now unloaded.\n")
+    logger.info("Core cog unloaded")
        
