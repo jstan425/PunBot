@@ -1,4 +1,5 @@
 {
+    "python.terminal.activateEnvironment": true,
     "python.formatting.provider": "black",
     "editor.formatOnSave": true,
     "files.exclude": {
@@ -9,6 +10,5 @@
         "**/.svn": true,
         "**/*.pyc": {"when": "$(basename).py"},
         "**/CVS": true,
-        "**/Thumbs.db": true},
-    "python.terminal.activateEnvironment": true
+        "**/Thumbs.db": true}
 }
