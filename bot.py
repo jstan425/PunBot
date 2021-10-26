@@ -14,8 +14,8 @@ if os.name != "nt":
 
     uvloop.install()
 
-load_dotenv()
 install(show_locals=True)
+load_dotenv()
 
 intents = disnake.Intents.all()
 bot = commands.Bot(
