@@ -21,7 +21,7 @@ intents = disnake.Intents.all()
 bot = commands.Bot(
     command_prefix="pb-",
     intents=intents,
-    test_guilds=[872470314171392001],
+    test_guilds=[872470314171392001, 405738567902429244],
     sync_commands_debug=True,
 )
 
