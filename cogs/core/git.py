@@ -13,7 +13,7 @@ from rich.traceback import install
 
 install(show_locals=True)
 logger = logging.getLogger("punbot")
-logger.setLevel(logging.DEBUG)
+
 
 class Git(commands.Cog):
     def __init__(self, bot:commands.Bot):
@@ -28,14 +28,9 @@ class Git(commands.Cog):
         CantFix = "wontfix"
         
     
-    @commands.slash_command(description="Create issues in Repo")
+    @commands.slash_command()
     @check.is_admin()
-    async def git(self,
-                  inter,
-                  title: str= Param(desc="Title"),
-                  issue_label: IssueType = Param(desc="Bugs or Enhancements"),
-                  description: str= Param(None, desc="Description"),
-    ):
+    async def git(self, inter):
         if inter.guild.id not in [872470314171392001, 405738567902429244]:
             embed = disnake.Embed(
                 title="Error",
@@ -44,6 +39,15 @@ class Git(commands.Cog):
                 )
             await inter.response.send_message(embed=embed)
             return
+        return False
+        
+    @git.sub_command(description="Create issues in repo")
+    async def create(self,
+                  inter,
+                  title: str= Param(desc="Title"),
+                  issue_label: IssueType = Param(desc="Bugs or Enhancements"),
+                  description: str= Param(None, desc="Description"),
+    ):  
         
         load_dotenv()
         g = Github(os.getenv("GITTOKEN"))
@@ -52,7 +56,7 @@ class Git(commands.Cog):
         g = repo.create_issue(
             title=title,
             labels=[label],
-            body=f"{description}" + "\n\n - " + inter.author.name,
+            body=f"{description}" + "\n\n Raised by " + inter.author.name,
         )
         embed= disnake.Embed(
             title="Thank You!",
