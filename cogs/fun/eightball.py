@@ -17,16 +17,21 @@ class WisdomBall(commands.Cog):
                         question=Param(desc="Question you wish to know from 8ball.")):
              
         possible_response=[
-            'Definitely',
-            'There is possible',
-            'Too hard to tell',
-            'It is not looking good',
-            'That is solid NO',
+            'Certainly, who are you kidding to?',
+            'Without a doubt',
+            'YES definitely',
+            'You can rely on it',
+            'From my view YES, not sure for you.',
             'You gotta to be kidding, of course is YES!',
-            '...',
-            'No where close to YES',
+            'Come on, need an answer quick. Guess you gotta to try ask again.',
+            'Ask again later',
             'Sorry what is the question again?',
+            'Better not tell you now',
+            'Concentrate and ask again',
+            'My sources says no.',
+            'Very doubtful',
         ]
+        
         answer=random.choice(possible_response)
         embed=disnake.Embed(
             title="The future says...",
