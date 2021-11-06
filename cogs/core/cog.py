@@ -4,7 +4,7 @@ import logging
 
 from disnake.ext import commands
 from disnake.ext.commands import Param
-from utils import check
+from utils.formatter import generate_embed
 from .git import Git
 
 from rich.traceback import install
@@ -17,26 +17,24 @@ class Core(commands.Cog):
         self.bot = bot
            
     @commands.slash_command(description="Prints latency of the bot between server and the host.")
-    async def latency(self,
-                      inter: disnake.ApplicationCommandInteraction):
-        embed = disnake.Embed(
+    async def latency(self, inter):
+        embed = generate_embed(
             title="Latency",
-            description=(f"The latency is {round(self.bot.latency * 1000)}ms"),
-            color=disnake.Color.blue(),
+            desc=(f"The latency is {round(self.bot.latency * 1000)}ms"),
+            msg_type= 'info'
             )
         await inter.response.send_message(embed=embed)
     
     @commands.slash_command(description="Reload Cogs")
-    async def reload(self,
-                     inter: disnake.ApplicationCommandInteraction):
+    async def reload(self, inter):
         for folder in os.listdir("cogs"):
             if os.path.exists(os.path.join("cogs", folder, "cogs.py")):
                 self.bot.unload_extension(f"cogs.{folder}.cog")
                 self.bot.load_extension(f"cogs.{folder}.cog")
-        embed = disnake.Embed(
+        embed = generate_embed(
             title="Reloaded!",
-            description="Cogs is now reloaded",
-            color=0x3fff0a,
+            desc="Cogs is now reloaded",
+            msg_type='success',
             )
         await inter.response.send_message(embed=embed)
         print("Cogs is now reloaded.")
