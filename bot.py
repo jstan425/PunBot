@@ -65,7 +65,7 @@ def load_cogs(bot, logger):
 
 
 logger = setup_logging()
-load_cogs(bot, logger)
+
 
 logger.info("Bot Started")
 bot.run(os.getenv("TOKEN"))
