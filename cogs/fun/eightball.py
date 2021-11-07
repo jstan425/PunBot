@@ -3,9 +3,7 @@ import disnake
 
 from disnake.ext import commands
 from disnake.ext.commands import Param
-from rich.traceback import install
-
-install(show_locals=True)
+from utils.formatter import generate_embed
 
 class WisdomBall(commands.Cog):
     def __init__(self, bot:commands.Bot):
@@ -33,10 +31,10 @@ class WisdomBall(commands.Cog):
         ]
         
         answer=random.choice(possible_response)
-        embed=disnake.Embed(
+        embed=generate_embed(
             title="The future says...",
-            description=f"{answer}",
-            color=0x3fff0a
+            desc=f"{answer}",
+            msg_type='success'
         )
         await inter.response.send_message(embed=embed)
     
