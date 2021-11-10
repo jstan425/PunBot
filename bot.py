@@ -13,7 +13,7 @@ if os.name != "nt":
 
     uvloop.install()
 
-install(locals=True)
+install(show_locals=True)
 load_dotenv()
 
 

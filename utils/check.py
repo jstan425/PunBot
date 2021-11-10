@@ -1,7 +1,5 @@
 from disnake.ext import commands
-import logging
 
-logger = logging.getLogger("punbot")
 
 async def check_is_owner(inter):
     return await inter.bot.is_owner(inter.author)
