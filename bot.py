@@ -2,21 +2,20 @@ import os
 import platform
 import logging
 from logging.handlers import TimedRotatingFileHandler
-from rich.traceback import install
-
 
 import disnake
 from disnake.ext import commands
 from dotenv import load_dotenv
+from rich.traceback import install
 
 if os.name != "nt":
     import uvloop
 
     uvloop.install()
 
-
+install(locals=True)
 load_dotenv()
-install()
+
 
 intents = disnake.Intents.all()
 bot = commands.Bot(
@@ -65,7 +64,7 @@ def load_cogs(bot, logger):
 
 
 logger = setup_logging()
-
+load_cogs(bot,logger)
 
 logger.info("Bot Started")
 bot.run(os.getenv("TOKEN"))
