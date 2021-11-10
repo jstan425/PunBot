@@ -47,10 +47,15 @@ class Git(commands.Cog):
         load_dotenv()
         g = Github(os.getenv("GITTOKEN"))
         repo = g.get_repo("jstan425/PunBot")
-        eb = gen_embed(desc=f'')
+        
         open_issues = repo.get_issues(state='open')
+        eb = gen_embed(desc=f'{g.comment}')
         for issue in open_issues:
-            await inter.response.send_message(issue)
+            # await inter.response.send_message(issue)
+            eb.add_field(
+                name=f'{g.title}',
+                value=f'{g.number}')
+        await inter.edit_original_message(embed=eb)
 
     @issues.sub_command(description="Create issues in repo")
     async def create(self, 
