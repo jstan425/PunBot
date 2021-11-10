@@ -1,7 +1,7 @@
 import disnake
 import logging
 import os
-
+import utils
 from enum import Enum
 from disnake.ext import commands
 from disnake.ext.commands import Param
@@ -42,20 +42,9 @@ class Git(commands.Cog):
             return
         return False
     
-    @git.sub_command_group(description="List issues in the repository")
+    @git.sub_command_group()
     async def issues(self, inter):
-        load_dotenv()
-        g = Github(os.getenv("GITTOKEN"))
-        repo = g.get_repo("jstan425/PunBot")
-        
-        open_issues = repo.get_issues(state='open')
-        eb = gen_embed(desc=f'{g.comment}')
-        for issue in open_issues:
-            # await inter.response.send_message(issue)
-            eb.add_field(
-                name=f'{g.title}',
-                value=f'{g.number}')
-        await inter.edit_original_message(embed=eb)
+        return
 
     @issues.sub_command(description="Create issues in repo")
     async def create(self, 
@@ -80,3 +69,17 @@ class Git(commands.Cog):
             msg_type='success'
             )
         await inter.response.send_message(embed=embed)
+
+    @issues.sub_command(description="List issues in the repo.")
+    async def list(self, inter):
+        load_dotenv()
+        g = Github(os.getenv("GITTOKEN"))
+        repo = g.get_repo("jstan425/PunBot")
+        
+        open_issues = repo.get_issues(state='open')
+        eb = gen_embed(desc=f'{g.comments}')
+        for issue in open_issues:
+            eb.add_field(
+                name=f'{g.title}',
+                value=f'{g.number}')
+        await inter.edit_original_message(embed=eb)
