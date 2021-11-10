@@ -3,7 +3,7 @@ import disnake
 
 from disnake.ext import commands
 from disnake.ext.commands import Param
-from utils.formatter import generate_embed
+from utils.formatter import gen_embed
 
 class WisdomBall(commands.Cog):
     def __init__(self, bot:commands.Bot):
@@ -13,7 +13,7 @@ class WisdomBall(commands.Cog):
     async def eightball(self,
                         inter,
                         question=Param(desc="Question you wish to know from 8ball.")):
-             
+            
         possible_response=[
             'Certainly, who are you kidding to?',
             'Without a doubt',
@@ -31,7 +31,7 @@ class WisdomBall(commands.Cog):
         ]
         
         answer=random.choice(possible_response)
-        embed=generate_embed(
+        embed=gen_embed(
             title="The future says...",
             desc=f"{answer}",
             msg_type='success'

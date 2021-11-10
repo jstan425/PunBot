@@ -6,7 +6,7 @@ from enum import Enum
 from disnake.ext import commands
 from disnake.ext.commands import Param
 from utils import check
-from utils.formatter import generate_embed
+from utils.formatter import gen_embed
 from github import Github
 from dotenv import load_dotenv
 
@@ -33,7 +33,7 @@ class Git(commands.Cog):
     @check.is_admin()
     async def git(self, inter):
         if inter.guild.id not in [872470314171392001, 405738567902429244]:
-            embed = generate_embed(
+            embed = gen_embed(
                 title="Error",
                 desc="Not permitted to create issue",
                 msg_type="error"
@@ -47,16 +47,17 @@ class Git(commands.Cog):
         load_dotenv()
         g = Github(os.getenv("GITTOKEN"))
         repo = g.get_repo("jstan425/PunBot")
-        
+        eb = gen_embed(desc=f'')
         open_issues = repo.get_issues(state='open')
         for issue in open_issues:
             await inter.response.send_message(issue)
-              
+
     @issues.sub_command(description="Create issues in repo")
-    async def create(self, inter,
-                  title: str= Param(desc="Title"),
-                  issue_label: IssueType = Param(desc="Bugs or Enhancements"),
-                  description: str= Param(None, desc="Description"),
+    async def create(self, 
+                inter,
+                title: str= Param(desc="Title"),
+                issue_label: IssueType = Param(desc="Bugs or Enhancements"),
+                description: str= Param(None, desc="Description"),
     ):  
         
         load_dotenv()
@@ -68,7 +69,7 @@ class Git(commands.Cog):
             labels=[label],
             body=f"{description}" + "\n\n Raised by " + inter.author.name,
         )
-        embed= generate_embed(
+        embed= gen_embed(
             title="Thank You!",
             desc="The issue had been raised successfully. You can view it at " + g.html_url,
             msg_type='success'

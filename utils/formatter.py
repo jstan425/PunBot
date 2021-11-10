@@ -26,19 +26,20 @@ def colour(*args):
     else:
         return disnake.Colour.lighter_grey()
 
-def generate_embed(msg_type='',
-               title=None, 
-               icon=None,
-               desc=None,
-               msg_colour=None,
-               title_url=None,
-               thumbnail='',
-               image='',
-               fields=None,
-               footer=None,
-               footer_icon=None,
-               inline=True
-               ):
+def gen_embed(
+            msg_type='',
+            title=None, 
+            icon=None,
+            desc=None,
+            msg_colour=None,
+            title_url=None,
+            thumbnail='',
+            image='',
+            fields=None,
+            footer=None,
+            footer_icon=None,
+            inline=True
+            ):
     
     """Returns a formatted discord embed object.
     Define either a type or a colour.
@@ -67,18 +68,19 @@ def generate_embed(msg_type='',
         msg_colour = embed_types[msg_type]['colour']
     elif not isinstance(msg_colour, disnake.Colour):
         msg_colour = colour(msg_colour) 
-    embed = disnake.Embed(description=desc,
-                          colour=msg_colour
-                          )
+    embed = disnake.Embed(
+                    description=desc,
+                    colour=msg_colour
+                        )
     if not title_url:
         title_url = disnake.Embed.Empty
     if not icon:
         icon = disnake.Embed.Empty
     if title:
         embed.set_author(name=title,
-                         icon_url=icon,
-                         url=title_url
-                         )
+                        icon_url=icon,
+                        url=title_url
+                        )
     if thumbnail:
         embed.set_thumbnail(url=thumbnail)
     if image:

@@ -4,7 +4,7 @@ import logging
 
 from disnake.ext import commands
 from disnake.ext.commands import Param
-from utils.formatter import generate_embed
+from utils.formatter import gen_embed
 from .git import Git
 
 from rich.traceback import install
@@ -15,10 +15,10 @@ logger = logging.getLogger("punbot")
 class Core(commands.Cog):
     def __init__(self, bot:commands.Bot):
         self.bot = bot
-           
+    
     @commands.slash_command(description="Prints latency of the bot between server and the host.")
     async def latency(self, inter):
-        embed = generate_embed(
+        embed = gen_embed(
             title="Latency",
             desc=(f"The latency is {round(self.bot.latency * 1000)}ms"),
             msg_type= 'info'
@@ -31,7 +31,7 @@ class Core(commands.Cog):
             if os.path.exists(os.path.join("cogs", folder, "cogs.py")):
                 self.bot.unload_extension(f"cogs.{folder}.cog")
                 self.bot.load_extension(f"cogs.{folder}.cog")
-        embed = generate_embed(
+        embed = gen_embed(
             title="Reloaded!",
             desc="Cogs is now reloaded",
             msg_type='success',
@@ -57,4 +57,3 @@ def teardown(bot:commands.Bot):
     print("Git cogs is now unloaded.\n")
     logger.info("Git cog unloaded")
     
-       
