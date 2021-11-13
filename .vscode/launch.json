@@ -10,7 +10,9 @@
             "request": "launch",
             "program": "bot.py",
             "args": ["-OO"],
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "env": {"PYTHONPATH": "${workspaceRoot}/src"},
+            "justMyCode": true,
         }
     ]
 }
