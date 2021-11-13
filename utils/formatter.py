@@ -30,7 +30,7 @@ def gen_embed(
             msg_type='',
             title=None, 
             icon=None,
-            desc=None,
+            desc='',
             msg_colour=None,
             title_url=None,
             thumbnail='',
