@@ -1,7 +1,7 @@
 import disnake
 import logging
 import os
-import utils
+
 from enum import Enum
 from disnake.ext import commands
 from disnake.ext.commands import Param
@@ -77,9 +77,11 @@ class Git(commands.Cog):
         repo = g.get_repo("jstan425/PunBot")
         
         open_issues = repo.get_issues(state='open')
-        eb = gen_embed(desc=f'{g.comments}')
+        embed = gen_embed(title='List of issues in the repo.', msg_type='info')
+        await inter.response.send_message(embed=embed)
         for issue in open_issues:
-            eb.add_field(
-                name=f'{g.title}',
-                value=f'{g.number}')
-        await inter.edit_original_message(embed=eb)
+            embed.add_field(
+                name={issue.title},
+                value={issue.number}
+                )
+        await inter.edit_original_message(embed=embed)
