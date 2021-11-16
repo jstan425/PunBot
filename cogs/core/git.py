@@ -61,7 +61,7 @@ class Git(commands.Cog):
         g = repo.create_issue(
             title=title,
             labels=[label],
-            body=f"{description}" + "\n\n Raised by " + inter.author.name,
+            body=f"{description}" + "\n\n by: " + inter.author.name,
         )
         embed= gen_embed(
             title="Thank You!",
@@ -77,12 +77,12 @@ class Git(commands.Cog):
         repo = g.get_repo("jstan425/PunBot")
         
         open_issues = repo.get_issues(state='open')
-        embed = gen_embed(title='List of issues in the repo.', msg_type='info')
+        embed = gen_embed(title='List of issues in the repo.', msg_colour=0x7818af)
         await inter.response.send_message(embed=embed)
         for issue in open_issues:
             embed.add_field(
-                name=issue.title,
-                value= 'Issue #' + str(issue.number),
+                name='Issue #' + str(issue.number) + ' - ' + str(issue.title),
+                value= str(issue.body) + '\nPermalink: ' + str(issue.html_url),
                 inline = False
                 )
         await inter.edit_original_message(embed=embed)
