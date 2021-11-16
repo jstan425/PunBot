@@ -82,7 +82,7 @@ class Git(commands.Cog):
         for issue in open_issues:
             embed.add_field(
                 name=issue.title,
-                value= 'Issue ' + str(issue.number),
+                value= 'Issue #' + str(issue.number),
                 inline = False
                 )
         await inter.edit_original_message(embed=embed)
