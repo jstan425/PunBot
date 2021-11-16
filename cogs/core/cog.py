@@ -16,7 +16,7 @@ class Core(commands.Cog):
     def __init__(self, bot:commands.Bot):
         self.bot = bot
     
-    @commands.slash_command(description="Prints latency of the bot between server and the host.")
+    @commands.slash_command(description="Check latency of the bot and the clients.")
     async def latency(self, inter):
         embed = gen_embed(
             title="Latency",

@@ -9,10 +9,10 @@ class WisdomBall(commands.Cog):
     def __init__(self, bot:commands.Bot):
         self.bot = bot
         
-    @commands.slash_command(description="Get 8ball some wisdom.")
+    @commands.slash_command(description="Allow the mystical 8ball to get the answer in your mind.")
     async def eightball(self,
                         inter,
-                        question=Param(desc="Question you wish to know from 8ball.")):
+                        question=Param(desc="What is in your mind?")):
             
         possible_response=[
             'Certainly, who are you kidding to?',

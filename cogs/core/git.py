@@ -46,12 +46,12 @@ class Git(commands.Cog):
     async def issues(self, inter):
         return
 
-    @issues.sub_command(description="Create issues in repo")
+    @issues.sub_command(description="Submit issue that required attention.")
     async def create(self, 
                 inter,
-                title: str= Param(desc="Title"),
-                issue_label: IssueType = Param(desc="Bugs or Enhancements"),
-                description: str= Param(None, desc="Description"),
+                title: str= Param(desc="Describe the title of the issue."),
+                issue_label: IssueType = Param(desc="Label for the issue."),
+                description: str= Param(None, desc="Describe the issue in detailed (if possible)."),
     ):  
         
         load_dotenv()
@@ -70,7 +70,7 @@ class Git(commands.Cog):
             )
         await inter.response.send_message(embed=embed)
 
-    @issues.sub_command(description="List issues in the repo.")
+    @issues.sub_command(description="Print the issue(s) list from repo.")
     async def list(self, inter):
         load_dotenv()
         g = Github(os.getenv("GITTOKEN"))
@@ -81,8 +81,8 @@ class Git(commands.Cog):
         await inter.response.send_message(embed=embed)
         for issue in open_issues:
             embed.add_field(
-                name='Issue #' + str(issue.number) + ' - ' + str(issue.title),
-                value= str(issue.body) + '\nPermalink: ' + str(issue.html_url),
+                name='Issue #' + str(issue.number) + ' - ' + str(issue.title) + ' (' + str(issue.labels[0].name) + ')',
+                value= str(issue.body) + '\n**Permalink**: ' + str(issue.html_url),
                 inline = False
                 )
         await inter.edit_original_message(embed=embed)
