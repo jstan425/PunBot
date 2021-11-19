@@ -86,3 +86,22 @@ class Git(commands.Cog):
                 inline = False
                 )
         await inter.edit_original_message(embed=embed)
+    
+    @issues.sub_command(description="Add comments to the issue.")
+    async def add(self, inter,
+            issue_id: int=Param(desc="Issue ID of the issue"),
+            comment: str=Param(desc="Comment to add to the issue")
+            ):
+        load_dotenv()
+        g = Github(os.getenv("GITTOKEN"))
+        repo = g.get_repo("jstan425/PunBot")
+
+        issue= repo.get_issue(number=int(issue_id))
+        comments= issue.create_comment(str(comment))
+
+        embed = gen_embed(
+            title="Comment added successfully to the issue",
+            msg_type="success",
+            desc="Your comment is now viewable at " + issue.html_url
+        )
+        await inter.response.send_message(embed=embed)
