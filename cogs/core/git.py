@@ -27,7 +27,6 @@ class Git(commands.Cog):
         NeedHelp = "help wanted"
         Question = "question"
         CantFix = "wontfix"
-        
     
     @commands.slash_command()
     @check.is_admin()
@@ -76,8 +75,8 @@ class Git(commands.Cog):
         g = Github(os.getenv("GITTOKEN"))
         repo = g.get_repo("jstan425/PunBot")
         
-        open_issues = repo.get_issues(state='open')
-        embed = gen_embed(title='List of issues in the repo.', msg_colour=0x7818af)
+        open_issues = repo.get_issues(state="open")
+        embed = gen_embed(title="List of issues in the repo.", msg_colour=0x7818af)
         await inter.response.send_message(embed=embed)
         for issue in open_issues:
             embed.add_field(
@@ -87,11 +86,12 @@ class Git(commands.Cog):
                 )
         await inter.edit_original_message(embed=embed)
     
-    @issues.sub_command(description="Add comments to the issue.")
+    @issues.sub_command(description="Add comments to a issue.")
     async def add(self, inter,
-            issue_id: int=Param(desc="Issue ID of the issue"),
-            comment: str=Param(desc="Comment to add to the issue")
+            issue_id: int=Param(desc="ID of the issue that need to be commented."),
+            comment: str=Param(desc="Description that need to be add on.")
             ):
+            
         load_dotenv()
         g = Github(os.getenv("GITTOKEN"))
         repo = g.get_repo("jstan425/PunBot")
