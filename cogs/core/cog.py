@@ -10,7 +10,7 @@ from .git import Git
 from rich.traceback import install
 install(show_locals=True)
 
-logger = logging.getLogger("punbot")
+logger = logging.getLogger("punbot/ Core")
 
 class Core(commands.Cog):
     def __init__(self, bot:commands.Bot):
