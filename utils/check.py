@@ -30,6 +30,10 @@ async def check_is_mod(inter):
         return True
     if inter.author.permissions_in(inter.channel).manage_messages:
         return True
+    if inter.author.permissions_in(inter.channel).moderate_members:
+        return True
+    if inter.author.guild_permissions.kick_members:
+        return True
     return False
 
 def is_owner():
