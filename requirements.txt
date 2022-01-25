@@ -32,6 +32,6 @@ six==1.16.0
 tomli==1.2.2
 typing-extensions==3.10.0.2
 urllib3==1.26.7
-virtualenv==20.8.1
+virtualenv==20.13.0
 wrapt==1.13.3
 yarl==1.7.2
