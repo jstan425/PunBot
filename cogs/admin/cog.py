@@ -20,13 +20,14 @@ class Admin(commands.Cog):
             reason: str=Param(None, desc="Reason to be kicked."),
         ):
 
-            embed= gen_embed(
-                title="Uh-oh..!",
-                desc= user.name + "had been kicked for " + reason,
-                msg_type='warning'
-                )
-            await disnake.guild.kick(reason=reason)
-            await inter.response.send_message(embed=embed)
+        embed = gen_embed(
+            title="Uh-oh..!",
+            desc=f'{user.name}had been kicked for {reason}',
+            msg_type='warning',
+        )
+
+        await disnake.guild.kick(reason=reason)
+        await inter.response.send_message(embed=embed)
     
     @commands.slash_command(description="Timeout a user")
     @check.is_mod()
@@ -36,13 +37,14 @@ class Admin(commands.Cog):
             duration = Param(desc="Duration to be timeout"),
             reason = Param(None, desc="Reason to be timeout")
         ):
-            embed= gen_embed(
-                    title="Uh-oh..!",
-                    desc= user.name + " had been timeout for " + reason + " for " + duration,
-                    msg_type='warning'
-                    )
-            await disnake.Guild.timeout(reason=reason)
-            await inter.response.send_message(embed=embed)
+        embed = gen_embed(
+            title="Uh-oh..!",
+            desc=f'{user.name} had been timeout for {reason} for {duration}',
+            msg_type='warning',
+        )
+
+        await disnake.Guild.timeout(reason=reason)
+        await inter.response.send_message(embed=embed)
             
 def setup(bot:commands.Bot):
     bot.add_cog(Admin(bot))
