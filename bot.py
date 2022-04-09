@@ -6,14 +6,13 @@ from logging.handlers import TimedRotatingFileHandler
 import disnake
 from disnake.ext import commands
 from dotenv import load_dotenv
-from rich.traceback import install
 
 if os.name != "nt":
     import uvloop
 
     uvloop.install()
 
-install(show_locals=True)
+
 load_dotenv()
 
 
