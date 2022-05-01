@@ -19,3 +19,27 @@ load_dotenv()
 
 RestClient.configure(os.getenv("X-API"))
 
+class PokeTCG(commands.Cog):
+    def __init__(self, bot:commands.Bot):
+        self.bot = bot
+
+    @commands.slash_command(description="Get PokeTCG card")
+    async def card(self, 
+            inter,
+            name = Param(desc="Name of the card"), 
+            id=Param(None, desc="Set ID")
+        ):
+        # Search card based on name and Set ID
+        cards = Card.where(q='set.name=name set.id=id')
+        embed = gen_embed(
+            title = ""
+        )
+
+    @commands.slash_command(description="Get PokeTCG card")
+    async def list_sets(self, 
+                        inter):
+                    sets = Set.all()
+
+
+
+

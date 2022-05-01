@@ -1,0 +1,36 @@
+{
+    "id": "embed_1149",
+    "type": "rich",
+    "rawTitle": "Eevee (TG011)",
+    "rawDescription": "Showing 1/65. Traverse the cards with the buttons below.",
+    "footer": {
+        "text": "Brilliant Stars - Released: 2022-02-25",
+        "iconURL": "https://pkmn-tcg-api-images.sfo2.cdn.digitaloceanspaces.com/Brilliant%20Stars/symbol.png",
+        "iconProxyURL": "https://images-ext-2.discordapp.net/external/5LjQVqzXwYSf4nt29aJM4A8KmiwuUjZUL0MfxGOMnZ0/https/pkmn-tcg-api-images.sfo2.cdn.digitaloceanspaces.com/Brilliant%2520Stars/symbol.png"
+    },
+    "color": "hsl(145, calc(var(--saturation-factor, 1) * 63.2%), 49%)",
+    "thumbnail": {
+        "url": "https://pkmn-tcg-api-images.sfo2.cdn.digitaloceanspaces.com/%21Logos/colorless.png",
+        "proxyURL": "https://images-ext-1.discordapp.net/external/pjrCc3Bnl_QEysQi82APDmcnRrYx4emPYjwO-IfjKzk/https/pkmn-tcg-api-images.sfo2.cdn.digitaloceanspaces.com/%2521Logos/colorless.png",
+        "width": 256,
+        "height": 256
+    },
+    "image": {
+        "url": "https://pkmn-tcg-api-images.sfo2.cdn.digitaloceanspaces.com/Brilliant%20Stars/en_US/eevee%20tg011.png",
+        "proxyURL": "https://images-ext-2.discordapp.net/external/FyW-kmpuzY68hMSvOeUoG2v0ahOb2OMFYTj2QWoogT8/https/pkmn-tcg-api-images.sfo2.cdn.digitaloceanspaces.com/Brilliant%2520Stars/en_US/eevee%2520tg011.png",
+        "width": 734,
+        "height": 1024
+    },
+    "fields": [
+        {
+            "rawName": "Legality",
+            "rawValue": "Standard: :legal: - Expanded: :legal:",
+            "inline": false
+        },
+        {
+            "rawName": "TCGPlayer Prices (:flag_us:)",
+            "rawValue": "L: [$1.00](https://store.tcgplayer.com/pokemon/swsh09-brilliant-stars-trainer-gallery/eevee?utm_campaign=affiliate&utm_medium=CardBuddy&utm_source=CardBuddy) | M: [$3.03](https://store.tcgplayer.com/pokemon/swsh09-brilliant-stars-trainer-gallery/eevee?utm_campaign=affiliate&utm_medium=CardBuddy&utm_source=CardBuddy) | H: [$11.99](https://store.tcgplayer.com/pokemon/swsh09-brilliant-stars-trainer-gallery/eevee?utm_campaign=affiliate&utm_medium=CardBuddy&utm_source=CardBuddy)",
+            "inline": true
+        }
+    ]
+}
